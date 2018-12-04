@@ -1,11 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.*;
 
 public class Day1 {
     public static void main(String[] args) {
-        List<Integer> frequencyDeltas = PuzzleInput.getFrequencyDeltas();
+        List<Integer> frequencyDeltas = PuzzleInput.getInputForDay(1);
         System.out.println("Result of Day 1, Part 1: " + sum(frequencyDeltas));
         System.out.println("Result of Day 1, Part 2: " + detectFirstDuplicateFrequencyLooparound(frequencyDeltas));
     }
@@ -34,29 +31,5 @@ public class Day1 {
                 loopsAround++;
             }
         } while (true);
-    }
-}
-
-class PuzzleInput {
-    private static final String PUZZLE_INPUT_FILE = "src/main/resources/puzzle-inputs/day1.txt";
-
-    private static List<Integer> frequencyDeltas = null;
-
-    public static List<Integer> getFrequencyDeltas() {
-        if (frequencyDeltas == null) {
-            frequencyDeltas = processInput();
-        }
-        return frequencyDeltas;
-    }
-
-    private static List<Integer> processInput() {
-        List<Integer> frequencyDeltas = new ArrayList<>();
-        // Used try-with-resource statement below, a less verbose option for resources that implement AutoCloseable
-        try (BufferedReader br = new BufferedReader(new FileReader(PUZZLE_INPUT_FILE))) {
-            br.lines().forEach(line -> frequencyDeltas.add(Integer.parseInt(line)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return frequencyDeltas;
     }
 }
